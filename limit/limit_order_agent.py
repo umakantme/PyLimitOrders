@@ -21,6 +21,9 @@ class LimitOrderAgent(PriceListener):
         }
         self.orders.append(order)
 
+        # Execute the order once added to execution list
+        self.execute_order()
+
     def execute_order(self):
 
         self.product_id, self.price = PriceListener.on_price_tick(self)
@@ -37,12 +40,13 @@ class LimitOrderAgent(PriceListener):
 
     #retrying unexecuted orders needs to be added so that whenever the market price condition is satisfied it should be executed immediately afterwards
     def unexecuted_orders(self):
+        """
+        retrying unexecuted orders needs to be added so that whenever the market price condition is satisfied it should be executed immediately afterwards
+        """
         if self.orders:
             self.execute_order()
         else:
             print("All orders executed successfully...")
-
-
 
 if __name__ == "__main__":
 
