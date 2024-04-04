@@ -55,22 +55,3 @@ class LimitOrderAgent(PriceListener):
         """
         while self.orders:
             self.execute_order()
-
-if __name__ == "__main__":
-
-    try:
-
-        # execution_client = MockExecutionClient()
-        agent = LimitOrderAgent(PriceListener)
-
-        # Add buy order for 1000 shares of IBM at $100 limit
-        agent.add_order(True, 'IBM', 1000, 100)
-
-        # Add sell order for 1000 shares of IBM at $150 limit
-        agent.add_order(False, 'IBM', 1000, 150)
-
-        agent.execute_order()
-        # agent.unexecuted_orders()
-
-    except ExecutionException as e:
-        print("An error occurred:", e)
